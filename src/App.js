@@ -23,7 +23,7 @@ const App = () => {
     })
     .then((data) => {
       console.log(data, 'data!!!')
-      setItems([...data, items])
+      // setItems([...data, items])
     })
   }
 
@@ -36,9 +36,9 @@ const App = () => {
         <input type="text"></input>
         <button>send</button>
       </form>
-      {items.map((value) => {
-        return <div>{value}</div>
-      })}
+      {/* {items.map((value) => {
+        return <div>{value.title}{value.number}</div>
+      })} */}
     </div>
   );
 }
