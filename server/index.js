@@ -1,6 +1,6 @@
-import express from 'express';
-import cors from 'cors';
-import { getAllOpenPulls, numberOfcommitsPerPull } from './api.js';
+const express = require('express') ;
+const cors = require('cors');
+const { getAllOpenPulls, numberOfcommitsPerPull } = require('./api.js');
 
 const app = express();
 app.use(cors())

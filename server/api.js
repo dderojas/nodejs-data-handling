@@ -1,5 +1,4 @@
-import fetch from 'node-fetch';
-
+const axios = require('axios');
 
 const baseURL = `https://api.github.com`;
 
@@ -8,11 +7,9 @@ const getAllOpenPulls = async (userAndRepo) => {
   const profile = userAndRepo[3];
   const repo = userAndRepo[4];
 
-  await fetch(`${baseURL}/repos/${profile}/${repo}/pulls`)
-    .then((data) => {
-      return data.json()
-    })
-    .then((data) => {
+  await axios.get(`${baseURL}/repos/${profile}/${repo}/pulls`)
+    .then((response) => {
+      const { data } = response;
       openPullsInfo = data;
     })
 
@@ -24,21 +21,23 @@ const numberOfcommitsPerPull = async (pullsArr) => {
   let pullTitles = [];
 
   for (let i = 0; i < pullsArr.length; i++) {
-    promises.push(fetch(pullsArr[i]['commits_url']).then(data => data.json()))
+    promises.push(axios.get(pullsArr[i]['commits_url']))
     pullTitles.push(pullsArr[i].title)
   }
 
   let resolvedPromises = await Promise.all(promises)
 
   let finalResults = resolvedPromises.map((elem, i) => {
-    return { pullTitle: pullTitles[i], commitNumber: elem.length }
+
+    const { data } = elem;
+    return { pullTitle: pullTitles[i], commitNumber: data.length }
   })
 
   return finalResults;
 }
 
 
-export {
+module.exports = {
   getAllOpenPulls,
   numberOfcommitsPerPull
 };

@@ -1,10 +1,11 @@
 
 ## Installation
+
+cd into directory and run:
+
 ```bash
 npm i
 ```
-
-cd into directory
 
 ## Run UI
 
