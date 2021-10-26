@@ -1,7 +1,5 @@
-import { useState } from 'react';
 
 const App = () => {
-  const [items, setItems] = useState([])
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -17,28 +15,26 @@ const App = () => {
       cache: 'default'
     }
 
+    // hardcoded localhost since no deployment is necassary
     fetch(`http://localhost:3001/?gitURL=${value}`, params)
     .then((data) => {
       return data.json()
     })
     .then((data) => {
-      console.log(data, 'data!!!')
-      // setItems([...data, items])
+      console.log(data, 'data results')
     })
   }
 
   return (
-    <div className="App">
-      <header className="App-header">
+    <div>
+      <h1>
         Github Api Node App
-      </header>
+      </h1>
+      <p>Enter repository URL and check the console for results</p>
       <form onSubmit={handleSubmit}>
         <input type="text"></input>
         <button>send</button>
       </form>
-      {/* {items.map((value) => {
-        return <div>{value.title}{value.number}</div>
-      })} */}
     </div>
   );
 }

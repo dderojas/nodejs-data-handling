@@ -5,8 +5,8 @@ const baseURL = `https://api.github.com`;
 
 const getAllOpenPulls = async (userAndRepo) => {
   let openPullsInfo;
-  const profile = userAndRepo[1];
-  const repo = userAndRepo[2];
+  const profile = userAndRepo[3];
+  const repo = userAndRepo[4];
 
   await fetch(`${baseURL}/repos/${profile}/${repo}/pulls`)
     .then((data) => {
@@ -21,16 +21,22 @@ const getAllOpenPulls = async (userAndRepo) => {
 
 const numberOfcommitsPerPull = async (pullsArr) => {
   let promises = [];
+  let pullTitles = [];
 
   for (let i = 0; i < pullsArr.length; i++) {
     promises.push(fetch(pullsArr[i]['commits_url']).then(data => data.json()))
+    pullTitles.push(pullsArr[i].title)
   }
 
-  console.log(promises, 'promsies??!?!?')
-  let result = await Promise.all(promises)
-  console.log(result, 'innumberrrrrrrrr')
-  return result
+  let resolvedPromises = await Promise.all(promises)
+
+  let finalResults = resolvedPromises.map((elem, i) => {
+    return { pullTitle: pullTitles[i], commitNumber: elem.length }
+  })
+
+  return finalResults;
 }
+
 
 export {
   getAllOpenPulls,
