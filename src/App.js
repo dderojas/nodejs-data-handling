@@ -1,3 +1,4 @@
+const baseURL = 'http://localhost:3001/';
 
 const App = () => {
 
@@ -16,7 +17,7 @@ const App = () => {
     }
 
     // hardcoded localhost since no deployment is necassary
-    fetch(`http://localhost:3001/?gitURL=${value}`, params)
+    fetch(`${baseURL}?gitURL=${value}`, params)
     .then((data) => {
       return data.json()
     })

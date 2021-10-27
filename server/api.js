@@ -3,9 +3,10 @@ const axios = require('axios');
 const baseURL = `https://api.github.com`;
 
 const getAllOpenPulls = async (gitURL) => {
-  let userAndRepo = gitURL.split('/')
-  const profile = userAndRepo[3];
-  const repo = userAndRepo[4];
+  let urlSplit = gitURL.split('.com')
+  let userAndRepo = urlSplit[1].split('/')
+  const profile = userAndRepo[1];
+  const repo = userAndRepo[2];
   let openPullsInfo;
   
   try {
@@ -34,6 +35,7 @@ const numberOfcommitsPerPull = async (pullsArr) => {
 
   try {
     let resolvedPromises = await Promise.all(promises)
+
     finalResults = resolvedPromises.map((elem, i) => {
       const { data } = elem;
       return { pullTitle: pullTitles[i], commitNumber: data.length }

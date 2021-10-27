@@ -1,7 +1,7 @@
 
 ## Installation
 
-cd into directory and run:
+cd into directory
 
 ```bash
 npm i
@@ -14,12 +14,19 @@ npm run start
 ```
 
 ## Run Server
+Separate terminal
 ```bash
-node server/index
+npm run server
+```
+## Run Tests
+
+```bash
+npm test
 ```
 
 ## Usage
 
 Pass in url address for github repo into input field
 Example: https://github.com/dderojas/nodejs-coding-challenge
-Press button for results
+Note: url works with our without https://
+Press button for results in console.
