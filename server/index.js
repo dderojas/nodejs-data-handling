@@ -8,8 +8,7 @@ const port = 3001
 
 app.get('/', async (req, res) => {
   const { gitURL } = req.query;
-  let userAndRepo = gitURL.split('/')
-  const pullsResults = await getAllOpenPulls(userAndRepo)
+  const pullsResults = await getAllOpenPulls(gitURL)
   const pullsCommitsNumber = await numberOfcommitsPerPull(pullsResults)
 
   res.status(200).send({ pullsResults, pullsCommitsNumber })
