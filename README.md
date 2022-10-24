@@ -26,7 +26,7 @@ npm test
 
 ## Usage
 
-Pass in url address for github repo into input field
-Example: https://github.com/dderojas/nodejs-coding-challenge
-Note: url works with our without https://
+Pass in url address for github repo into input field <br/>
+Example: https://github.com/dderojas/nodejs-coding-challenge <br/>
+Note: url works with our without https:// <br/>
 Press button for results in console.
