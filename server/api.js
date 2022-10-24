@@ -1,7 +1,6 @@
 const axios = require('axios');
 
 const baseURL = `https://api.github.com`;
-
 const getAllOpenPulls = async (gitURL) => {
   let urlSplit = gitURL.split('.com')
   let userAndRepo = urlSplit[1].split('/')
@@ -23,7 +22,7 @@ const getAllOpenPulls = async (gitURL) => {
 const numberOfcommitsPerPull = async (pullsArr) => {
   if(!Array.isArray(pullsArr)) return [];
 
-  let promises = [];
+  let promises = [[], []];
   let pullTitles = [];
 
   for (let i = 0; i < pullsArr.length; i++) {
